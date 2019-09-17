@@ -3,6 +3,7 @@
 #include<bits/stdc++.h>
 #include <iostream>
 #include <numeric>
+#include<stdio.h>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ __global__ void sum(int* input)
 	const int tid = threadIdx.x;
 	int step_size = 1;
 	int number_of_threads = blockDim.x;      
-	cout<< number_of_threads;
+	printf(number_of_threads);
 
 	while (number_of_threads > 0)
 	{
