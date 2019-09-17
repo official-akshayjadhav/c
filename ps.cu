@@ -13,7 +13,7 @@ __global__ void sum(int* input)
 	const int tid = threadIdx.x;
 	int step_size = 1;
 	int number_of_threads = blockDim.x;      
-	
+	cout<< number_of_threads;
 
 	while (number_of_threads > 0)
 	{
@@ -22,6 +22,7 @@ __global__ void sum(int* input)
 			const int fst = tid * step_size * 2;     
 			const int snd = fst + step_size;	
 			input[fst] += input[snd];							
+			cout<<tid<<" "<<fst<<" "<<snd<<endl;
 		}
 
 		step_size <<= 1; 			
