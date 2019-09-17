@@ -21,8 +21,7 @@ __global__ void sum(int* input)
 		{     
 			const int fst = tid * step_size * 2;     
 			const int snd = fst + step_size;	
-			input[fst] += input[snd];				 
-					
+			input[fst] += input[snd];							
 		}
 
 		step_size <<= 1; 			
@@ -33,12 +32,11 @@ __global__ void sum(int* input)
 
 int main()
 {
-	cout <<"in main"<<endl;
+	cout<<"in main"<<endl;
 	
 	int count=0;
-	// cout << "Enter the number of elements:\n" << endl;
-	// cin>>count;
-	count = 6;
+	cout << "Enter the number of elements:\n" << endl;
+	cin>>count;
 	
 	const int size = count * sizeof(int);
 	
@@ -46,18 +44,18 @@ int main()
 	cout << "Enter the elements:\n" << endl;
 	for(int i=0;i<count;i++)
 	{
-		// cout << "\n";
-		// cin >> h[i];
-		h[i] = i+1;
+		cout << "\n";
+		cin >> h[i];
+
 	}
 	
 
-	int* d;							//GPU parameter
+	int* d;
        
 	
 	cudaMalloc(&d, size);			
 	cudaMemcpy(d, h, size, cudaMemcpyHostToDevice);
-	sum <<<1, count/2 >>>(d);							// call kernel function <<<number of blocks, number of threads= number of elements/2
+	sum <<<1, count/2 >>>(d);						
 	
 	int result;
 	
