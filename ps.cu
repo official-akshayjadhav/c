@@ -22,8 +22,8 @@ __global__ void sum(int* input)
 			const int fst = tid * step_size * 2;     
 			const int snd = fst + step_size;	
 			input[fst] += input[snd];							
-			// cout<<tid<<" "<<fst<<" "<<snd<<endl;
-			printf("%d %d" , fst, snd);
+			
+			printf("%d %d  ", input[fst], input[snd]);
 		}
 
 		step_size <<= 1; 			
