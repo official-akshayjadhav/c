@@ -14,7 +14,7 @@ __global__ void sum(int* input)
 	const int tid = threadIdx.x;
 	int step_size = 1;
 	int number_of_threads = blockDim.x;      
-	printf(number_of_threads);
+	printf("%d", number_of_threads);
 	
 	while (number_of_threads > 0)
 	{
