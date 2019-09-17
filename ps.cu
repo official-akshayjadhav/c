@@ -11,7 +11,7 @@ using namespace std;
 
 __global__ void sum(int* input)  		 
 {
-	const int tid = threadIdx.x;
+	/*const int tid = threadIdx.x;
 	int step_size = 1;
 	int number_of_threads = blockDim.x;      
 	
@@ -28,7 +28,8 @@ __global__ void sum(int* input)
 
 		step_size <<= 1; 			
 		number_of_threads >>= 1;	
-	}
+	}*/
+	atomicAdd(input[fst],input[snd]);
 	
 }
 
