@@ -14,7 +14,6 @@ __global__ void sum(int* input)
 	const int tid = threadIdx.x;
 	int step_size = 1;
 	int number_of_threads = blockDim.x;      
-	printf("%d", number_of_threads);
 	
 	while (number_of_threads > 0)
 	{
@@ -24,6 +23,7 @@ __global__ void sum(int* input)
 			const int snd = fst + step_size;	
 			input[fst] += input[snd];							
 			// cout<<tid<<" "<<fst<<" "<<snd<<endl;
+			printf("%d %d" , fst, snd);
 		}
 
 		step_size <<= 1; 			
@@ -57,7 +57,8 @@ int main()
 	
 	cudaMalloc(&d, size);			
 	cudaMemcpy(d, h, size, cudaMemcpyHostToDevice);
-	sum <<<1, count >>>(d);						
+	sum <<<1, count/2 >>>(d);						
+	printf("%d", number_of_threads);
 	
 	int result;
 	
