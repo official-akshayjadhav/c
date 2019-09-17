@@ -58,7 +58,7 @@ int main()
 	cudaMalloc(&d, size);			
 	cudaMemcpy(d, h, size, cudaMemcpyHostToDevice);
 	sum <<<1, count/2 >>>(d);						
-	printf("%d", number_of_threads);
+	printf("%d", count/2);
 	
 	int result;
 	
