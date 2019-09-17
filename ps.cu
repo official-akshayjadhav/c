@@ -33,6 +33,8 @@ __global__ void sum(int* input)
 
 int main()
 {
+	cout <<"in main"<<endl;
+	
 	int count=0;
 	// cout << "Enter the number of elements:\n" << endl;
 	// cin>>count;
