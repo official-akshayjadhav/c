@@ -55,7 +55,7 @@ int main()
 	
 	cudaMalloc(&d, size);			
 	cudaMemcpy(d, h, size, cudaMemcpyHostToDevice);
-	sum <<<1, count/2 >>>(d);						
+	sum <<<1, count >>>(d);						
 	
 	int result;
 	
