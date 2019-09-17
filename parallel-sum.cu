@@ -34,17 +34,19 @@ __global__ void sum(int* input)  		// kernel function definition
 int main()
 {
 	int count=0;
-	cout << "Enter the number of elements:\n" << endl;
-	cin>>count;
-
+	// cout << "Enter the number of elements:\n" << endl;
+	// cin>>count;
+	count = 5;
+	
 	const int size = count * sizeof(int);
 	
 	int h[count];
 	cout << "Enter the elements:\n" << endl;
 	for(int i=0;i<count;i++)
 	{
-		cout << "\n";
-		cin >> h[i];
+		// cout << "\n";
+		// cin >> h[i];
+		h[i] = i+1;
 	}
 	
 
