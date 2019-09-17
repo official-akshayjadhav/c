@@ -8,25 +8,25 @@ using namespace std;
 
 #define BLOCK_SIZE 1
 
-__global__ void sum(int* input)  		// kernel function definition
+__global__ void sum(int* input)  		 
 {
 	const int tid = threadIdx.x;
 	int step_size = 1;
-	int number_of_threads = blockDim.x;    // blockDim = 4 i.e. number of threads per block = 4
+	int number_of_threads = blockDim.x;      
 	
 
 	while (number_of_threads > 0)
 	{
-		if (tid < number_of_threads) // still alive?
+		if (tid < number_of_threads)  
 		{     
-			const int fst = tid * step_size * 2;    //get the index in array
-			const int snd = fst + step_size;		//get the index in array
-			input[fst] += input[snd];				//calculate sum
+			const int fst = tid * step_size * 2;     
+			const int snd = fst + step_size;	
+			input[fst] += input[snd];				 
 					
 		}
 
-		step_size <<= 1; 				// increment step_size by 1
-		number_of_threads >>= 1;		//decrement number of threads by 2
+		step_size <<= 1; 			
+		number_of_threads >>= 1;	
 	}
 	
 }
@@ -36,7 +36,7 @@ int main()
 	int count=0;
 	// cout << "Enter the number of elements:\n" << endl;
 	// cin>>count;
-	count = 5;
+	count = 6;
 	
 	const int size = count * sizeof(int);
 	
@@ -53,20 +53,19 @@ int main()
 	int* d;							//GPU parameter
        
 	
-	cudaMalloc(&d, size);			//assign memory to parameters on GPU
-	
-	cudaMemcpy(d, h, size, cudaMemcpyHostToDevice);		//copy the array from CPU to GPU
-	sum <<<1, count >>>(d);							// call kernel function <<<number of blocks, number of threads= number of elements/2
+	cudaMalloc(&d, size);			
+	cudaMemcpy(d, h, size, cudaMemcpyHostToDevice);
+	sum <<<1, count/2 >>>(d);							// call kernel function <<<number of blocks, number of threads= number of elements/2
 	
 	int result;
 	
-	cudaMemcpy(&result, d, sizeof(int), cudaMemcpyDeviceToHost);		// copy the result back from GPU to CPU
+	cudaMemcpy(&result, d, sizeof(int), cudaMemcpyDeviceToHost);	
 
 	cout << "Sum is " << result << endl;
 
 	getchar();
 
-	cudaFree(d);					// Free the allocated memory
+	cudaFree(d);		
 
 
 	return 0;
