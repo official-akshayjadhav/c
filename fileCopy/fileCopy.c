@@ -17,4 +17,6 @@ int main()
 		fputc(ch,fw);
 	}
 	printf("done");
+	fclose(fr);
+	fclose(fw);
 }
